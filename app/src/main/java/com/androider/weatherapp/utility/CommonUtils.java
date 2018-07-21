@@ -16,12 +16,16 @@
 package com.androider.weatherapp.utility;
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.res.AssetManager;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.provider.Settings;
+import android.view.animation.LinearInterpolator;
+import android.widget.ImageView;
 
 
 import com.androider.weatherapp.R;
@@ -34,6 +38,8 @@ import java.util.Locale;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import butterknife.BindView;
+
 /**
  * Created by rao on .
  */
@@ -41,23 +47,68 @@ import java.util.regex.Pattern;
 public final class CommonUtils {
 
     private static final String TAG = "CommonUtils";
+    private static boolean dismiss = false;
 
     private CommonUtils() {
         // This utility class is not publicly instantiable
     }
 
-    public static ProgressDialog showLoadingDialog(Context context) {
+    public static ProgressDialog showLoadingDialog(Activity context) {
+
+        dismiss = false;
+
         ProgressDialog progressDialog = new ProgressDialog(context);
         progressDialog.show();
         if (progressDialog.getWindow() != null) {
             progressDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         }
         progressDialog.setContentView(R.layout.progress_dialog);
+
+        ImageView ivLoader = progressDialog.findViewById(R.id.ivLoader);
+
+        if (context.isFinishing()){
+            dismiss = true;
+        }
+
+        animateLoader(ivLoader);
+
         progressDialog.setIndeterminate(true);
         progressDialog.setCancelable(false);
         progressDialog.setCanceledOnTouchOutside(false);
+
+        progressDialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
+            @Override
+            public void onDismiss(DialogInterface dialogInterface) {
+                dismiss = true;
+            }
+        });
+
         return progressDialog;
     }
+
+    private static void animateLoader(final ImageView imageView){
+
+        if (dismiss){
+            return;
+        }
+
+        imageView.animate()
+                .rotationBy(360)
+                .setDuration(1000)
+                .setInterpolator(new LinearInterpolator())
+                .withEndAction(new Runnable() {
+                    @Override
+                    public void run() {
+
+                        if (dismiss){
+                            return;
+                        }
+
+                        animateLoader(imageView);
+                    }
+                }).start();
+    }
+
 
     @SuppressLint("all")
     public static String getDeviceId(Context context) {

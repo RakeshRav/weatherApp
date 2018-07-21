@@ -1,4 +1,4 @@
-package com.androider.weatherapp.ui.main;
+package com.androider.weatherapp.ui.splash;
 
 import android.util.Log;
 
@@ -17,13 +17,13 @@ import retrofit.RetrofitError;
 import retrofit.client.Response;
 
 
-public class MainPresenter<V extends MainMvpView> extends BasePresenter<V> implements MainMvpPrenter<V>{
+public class SplashPresenter<V extends SplashMvpView> extends BasePresenter<V> implements SplashMvpPresenter<V> {
 
 
-    private static final String TAG = MainPresenter.class.getSimpleName();
+    private static final String TAG = SplashPresenter.class.getSimpleName();
 
     @Inject
-    public MainPresenter(DataManager dataManager, CompositeDisposable compositeDisposable) {
+    public SplashPresenter(DataManager dataManager, CompositeDisposable compositeDisposable) {
         super(dataManager, compositeDisposable);
     }
 

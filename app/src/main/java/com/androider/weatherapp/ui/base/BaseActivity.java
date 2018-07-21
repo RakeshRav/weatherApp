@@ -31,12 +31,12 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.androider.weatherapp.MvpApp;
+import com.androider.weatherapp.WeatherMvpApp;
 import com.androider.weatherapp.R;
 import com.androider.weatherapp.di.component.ActivityComponent;
 import com.androider.weatherapp.di.component.DaggerActivityComponent;
 import com.androider.weatherapp.di.module.ActivityModule;
-import com.androider.weatherapp.ui.main.MainActivity;
+import com.androider.weatherapp.ui.splash.SplashActivity;
 import com.androider.weatherapp.utility.CommonUtils;
 import com.androider.weatherapp.utility.NetworkUtils;
 
@@ -60,7 +60,7 @@ public abstract class BaseActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         mActivityComponent = DaggerActivityComponent.builder()
                 .activityModule(new ActivityModule(this))
-                .applicationComponent(((MvpApp) getApplication()).getComponent())
+                .applicationComponent(((WeatherMvpApp) getApplication()).getComponent())
                 .build();
 
     }
@@ -164,7 +164,7 @@ public abstract class BaseActivity extends AppCompatActivity
 
     @Override
     public void openActivityOnTokenExpire() {
-        startActivity(MainActivity.getStartIntent(this));
+        startActivity(SplashActivity.getStartIntent(this));
         finish();
     }
 

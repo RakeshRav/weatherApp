@@ -23,9 +23,9 @@ import com.androider.weatherapp.data.network.ApiHelper;
 import com.androider.weatherapp.data.network.AppApiHelper;
 import com.androider.weatherapp.di.ActivityContext;
 import com.androider.weatherapp.di.PerActivity;
-import com.androider.weatherapp.ui.main.MainMvpPrenter;
-import com.androider.weatherapp.ui.main.MainMvpView;
-import com.androider.weatherapp.ui.main.MainPresenter;
+import com.androider.weatherapp.ui.splash.SplashMvpPresenter;
+import com.androider.weatherapp.ui.splash.SplashMvpView;
+import com.androider.weatherapp.ui.splash.SplashPresenter;
 
 import javax.inject.Singleton;
 
@@ -70,8 +70,8 @@ public class ActivityModule {
 
     @Provides
     @PerActivity
-    MainMvpPrenter<MainMvpView> provideMainPresenter(MainPresenter<MainMvpView> mainPresenter){
-              return mainPresenter;
+    SplashMvpPresenter<SplashMvpView> provideMainPresenter(SplashPresenter<SplashMvpView> splashPresenter){
+              return splashPresenter;
     }
 
     @Provides
