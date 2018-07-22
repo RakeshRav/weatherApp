@@ -18,7 +18,7 @@ package com.androider.weatherapp.di.component;
 import android.app.Application;
 import android.content.Context;
 
-import com.androider.weatherapp.MvpApp;
+import com.androider.weatherapp.WeatherMvpApp;
 import com.androider.weatherapp.data.DataManager;
 import com.androider.weatherapp.di.ApplicationContext;
 import com.androider.weatherapp.di.module.ApplicationModule;
@@ -35,7 +35,7 @@ import dagger.Component;
 @Component(modules = ApplicationModule.class)
 public interface ApplicationComponent {
 
-    void inject(MvpApp app);
+    void inject(WeatherMvpApp app);
 
 //    void inject(SyncService service);
 

@@ -16,6 +16,7 @@
 package com.androider.weatherapp.di.component;
 
 import com.androider.weatherapp.ui.main.MainActivity;
+import com.androider.weatherapp.ui.splash.SplashActivity;
 import com.androider.weatherapp.di.PerActivity;
 import com.androider.weatherapp.di.module.ActivityModule;
 
@@ -28,6 +29,8 @@ import dagger.Component;
 @PerActivity
 @Component(dependencies = ApplicationComponent.class, modules = ActivityModule.class)
 public interface ActivityComponent {
+
+    void inject(SplashActivity activity);
 
     void inject(MainActivity activity);
 

@@ -29,7 +29,7 @@ import javax.inject.Inject;
  * Created by rao on .
  */
 
-public class MvpApp extends Application {
+public class WeatherMvpApp extends Application {
 
     @Inject
     DataManager mDataManager;

@@ -28,7 +28,7 @@ public final class AppConstants {
 
     public static final long NULL_INDEX = -1L;
 
-    public static final String TIMESTAMP_FORMAT = "yyyyMMdd_HHmmss";
+    public static final String TIMESTAMP_FORMAT = "dd MMM yyyy";
 
     private AppConstants() {
         // This utility class is not publicly instantiable

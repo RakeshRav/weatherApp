@@ -51,6 +51,7 @@ dependencies {
 
     // dependency injection
     implementation "com.google.dagger:dagger:$rootProject.dagger2Version"
+    implementation 'com.android.support.constraint:constraint-layout:1.1.2'
     annotationProcessor "com.google.dagger:dagger-compiler:$rootProject.dagger2Version"
     provided 'javax.annotation:jsr250-api:1.0'
     implementation 'javax.inject:javax.inject:1'
@@ -62,6 +63,9 @@ dependencies {
     // code generator for view
     implementation "com.jakewharton:butterknife:$rootProject.butterKnifeVersion"
     annotationProcessor "com.jakewharton:butterknife-compiler:$rootProject.butterKnifeVersion"
+
+//    image loading view
+    implementation "com.squareup.picasso:picasso:$rootProject.picassoVersion"
 
     // swipe view
 //    implementation "com.mindorks:placeholderview:$rootProject.placeholderviewVersion"

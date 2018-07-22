@@ -16,8 +16,10 @@
 package com.androider.weatherapp.ui.base;
 
 import android.annotation.TargetApi;
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
@@ -28,15 +30,16 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.androider.weatherapp.MvpApp;
+import com.androider.weatherapp.WeatherMvpApp;
 import com.androider.weatherapp.R;
 import com.androider.weatherapp.di.component.ActivityComponent;
 import com.androider.weatherapp.di.component.DaggerActivityComponent;
 import com.androider.weatherapp.di.module.ActivityModule;
-import com.androider.weatherapp.ui.main.MainActivity;
+import com.androider.weatherapp.ui.splash.SplashActivity;
 import com.androider.weatherapp.utility.CommonUtils;
 import com.androider.weatherapp.utility.NetworkUtils;
 
@@ -60,7 +63,7 @@ public abstract class BaseActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         mActivityComponent = DaggerActivityComponent.builder()
                 .activityModule(new ActivityModule(this))
-                .applicationComponent(((MvpApp) getApplication()).getComponent())
+                .applicationComponent(((WeatherMvpApp) getApplication()).getComponent())
                 .build();
 
     }
@@ -109,6 +112,35 @@ public abstract class BaseActivity extends AppCompatActivity
         textView.setTextColor(ContextCompat.getColor(this, R.color.white));
         snackbar.show();
     }
+
+
+    private AlertDialog dialog;
+
+    @Override
+    public void showErrorDialog(String msg, View.OnClickListener action) {
+
+        dismissErrDialog();
+
+        dialog = CommonUtils.showCustomDialog(this, R.layout.layout_error_dialog);
+
+//        View view = dialog.
+
+        TextView textView = dialog.findViewById(R.id.tvErrMsg);
+        textView.setText(msg);
+
+        Button btnRetry = dialog.findViewById(R.id.btnRetry);
+
+        btnRetry.setOnClickListener(action);
+    }
+
+    @Override
+    public void dismissErrDialog() {
+        if (dialog != null && dialog.isShowing()) {
+            dialog.dismiss();
+        }
+    }
+
+
 
     @Override
     public void onError(String message) {
@@ -164,7 +196,7 @@ public abstract class BaseActivity extends AppCompatActivity
 
     @Override
     public void openActivityOnTokenExpire() {
-        startActivity(MainActivity.getStartIntent(this));
+        startActivity(SplashActivity.getStartIntent(this));
         finish();
     }
 
