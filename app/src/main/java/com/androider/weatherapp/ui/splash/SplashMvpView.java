@@ -4,6 +4,6 @@ import com.androider.weatherapp.ui.base.MvpView;
 
 public interface SplashMvpView extends MvpView{
 
-    void openSecondActvity();
+    void openMainActvity();
     void makeServerCall();
 }

@@ -12,6 +12,7 @@ import android.widget.TextView;
 
 import com.androider.weatherapp.R;
 import com.androider.weatherapp.ui.base.BaseActivity;
+import com.androider.weatherapp.ui.main.MainActivity;
 import com.androider.weatherapp.utility.CommonUtils;
 
 import javax.inject.Inject;
@@ -25,6 +26,7 @@ public class SplashActivity extends BaseActivity implements SplashMvpView {
     private static final String TAG = SplashActivity.class.getSimpleName();
     @Inject
     SplashMvpPresenter<SplashMvpView> prenter;
+
     @BindView(R.id.tvTitle)
     TextView tvTitle;
 
@@ -89,7 +91,12 @@ public class SplashActivity extends BaseActivity implements SplashMvpView {
     }
 
     @Override
-    public void openSecondActvity() {
-
+    public void openMainActvity() {
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                startActivity(MainActivity.getStartIntent(SplashActivity.this));
+            }
+        },500);
     }
 }

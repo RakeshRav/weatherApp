@@ -19,7 +19,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
 /**
- * Created by rao on 24/05/17.
+ * Created by rao.
  */
 
 public abstract class BaseViewHolder extends RecyclerView.ViewHolder {

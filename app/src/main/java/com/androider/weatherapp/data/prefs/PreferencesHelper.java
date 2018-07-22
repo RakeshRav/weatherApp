@@ -17,6 +17,7 @@ package com.androider.weatherapp.data.prefs;
 
 
 import com.androider.weatherapp.data.DataManager;
+import com.androider.weatherapp.data.network.model.forecastData.ForecastData;
 
 /**
  * Created by rao on .
@@ -28,5 +29,9 @@ public interface PreferencesHelper {
     String getCurrentUserName();
 
     void setCurrentUserName(String userName);
+
+    ForecastData getForecastReport();
+
+    void setForecastReport(ForecastData forecastReport);
 
 }

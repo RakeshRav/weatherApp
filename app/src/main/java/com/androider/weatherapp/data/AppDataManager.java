@@ -61,6 +61,16 @@ public class AppDataManager implements DataManager {
     }
 
     @Override
+    public ForecastData getForecastReport() {
+        return mPreferencesHelper.getForecastReport();
+    }
+
+    @Override
+    public void setForecastReport(ForecastData forecastReport) {
+        mPreferencesHelper.setForecastReport(forecastReport);
+    }
+
+    @Override
     public void getWeatherForecastWithDays(String ApiKey, String query, String days, Callback<ForecastData> callback) {
 
     }

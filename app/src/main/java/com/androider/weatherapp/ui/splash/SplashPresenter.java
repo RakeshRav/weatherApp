@@ -38,9 +38,11 @@ public class SplashPresenter<V extends SplashMvpView> extends BasePresenter<V> i
                 "Bangalore",
                 "7", new Callback<ForecastData>() {
                     @Override
-                    public void success(ForecastData s, Response response) {
-                        Log.d(TAG,"Success : "+new Gson().toJson(s));
+                    public void success(ForecastData forecastData, Response response) {
+                        Log.d(TAG,"Success : "+new Gson().toJson(forecastData));
                         getMvpView().hideLoading();
+                        getDataManager().setForecastReport(forecastData);
+                        getMvpView().openMainActvity();
                     }
 
                     @Override
