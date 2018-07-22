@@ -19,7 +19,9 @@ package com.androider.weatherapp.ui.base;
  * Created by rao on .
  */
 
+import android.content.DialogInterface;
 import android.support.annotation.StringRes;
+import android.view.View;
 
 /**
  * Base interface that any class that wants to act as a View in the MVP (Model View Presenter)
@@ -45,5 +47,9 @@ public interface MvpView {
     boolean isNetworkConnected();
 
     void hideKeyboard();
+
+    void showErrorDialog(String msg, View.OnClickListener action);
+
+    void dismissErrDialog();
 
 }

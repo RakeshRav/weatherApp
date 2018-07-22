@@ -1,6 +1,7 @@
 package com.androider.weatherapp.ui.splash;
 
 import android.util.Log;
+import android.view.View;
 
 import com.androider.weatherapp.BuildConfig;
 import com.androider.weatherapp.data.DataManager;
@@ -46,6 +47,13 @@ public class SplashPresenter<V extends SplashMvpView> extends BasePresenter<V> i
                     public void failure(RetrofitError error) {
                         Log.d(TAG,"failure : "+error.toString());
                         getMvpView().hideLoading();
+                        getMvpView().showErrorDialog("Something Went wrong, \n err : " + error.getMessage(), new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                getMvpView().dismissErrDialog();
+                                getMvpView().makeServerCall();
+                            }
+                        });
                     }
                 });
     }

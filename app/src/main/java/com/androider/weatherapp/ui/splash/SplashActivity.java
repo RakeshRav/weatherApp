@@ -1,6 +1,7 @@
 package com.androider.weatherapp.ui.splash;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -11,6 +12,7 @@ import android.widget.TextView;
 
 import com.androider.weatherapp.R;
 import com.androider.weatherapp.ui.base.BaseActivity;
+import com.androider.weatherapp.utility.CommonUtils;
 
 import javax.inject.Inject;
 
@@ -66,19 +68,28 @@ public class SplashActivity extends BaseActivity implements SplashMvpView {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                prenter.makeServerCallForecast(10);
+                makeServerCall();
             }
         },1500);
     }
 
+    @Override
+    public void makeServerCall() {
+        if (isNetworkConnected()){
+            prenter.makeServerCallForecast(10);
+        }else {
+            showErrorDialog("No Internet Connection Available", new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    dismissErrDialog();
+                    makeServerCall();
+                }
+            });
+        }
+    }
 
     @Override
     public void openSecondActvity() {
 
-    }
-
-    //    @OnClick(R.id.buttonForecast)
-    public void onViewClicked() {
-        prenter.makeServerCallForecast(10);
     }
 }

@@ -17,6 +17,7 @@ package com.androider.weatherapp.utility;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -24,6 +25,9 @@ import android.content.res.AssetManager;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.provider.Settings;
+import android.support.annotation.LayoutRes;
+import android.view.LayoutInflater;
+import android.view.View;
 import android.view.animation.LinearInterpolator;
 import android.widget.ImageView;
 
@@ -39,6 +43,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import butterknife.BindView;
+import butterknife.OnClick;
 
 /**
  * Created by rao on .
@@ -84,6 +89,26 @@ public final class CommonUtils {
         });
 
         return progressDialog;
+    }
+
+    public static AlertDialog showCustomDialog(Activity context,
+                                        @LayoutRes int layoutRes) {
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(context);
+
+//        builder.setPositiveButton("Ok", positiveListener);
+//        builder.setNegativeButton("Cancel", negetiveClickListener);
+
+        AlertDialog dialog = builder.create();
+
+        View view = LayoutInflater.from(context).inflate(layoutRes, null, false);
+
+        dialog.setView(view);
+
+        dialog.show();
+
+        return dialog;
+
     }
 
     private static void animateLoader(final ImageView imageView){
