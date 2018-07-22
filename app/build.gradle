@@ -64,6 +64,9 @@ dependencies {
     implementation "com.jakewharton:butterknife:$rootProject.butterKnifeVersion"
     annotationProcessor "com.jakewharton:butterknife-compiler:$rootProject.butterKnifeVersion"
 
+//    image loading view
+    implementation "com.squareup.picasso:picasso:$rootProject.picassoVersion"
+
     // swipe view
 //    implementation "com.mindorks:placeholderview:$rootProject.placeholderviewVersion"
 

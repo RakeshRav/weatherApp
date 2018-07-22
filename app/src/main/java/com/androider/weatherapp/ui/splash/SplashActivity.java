@@ -78,7 +78,7 @@ public class SplashActivity extends BaseActivity implements SplashMvpView {
     @Override
     public void makeServerCall() {
         if (isNetworkConnected()){
-            prenter.makeServerCallForecast(10);
+            prenter.makeServerCallForecast(7);
         }else {
             showErrorDialog("No Internet Connection Available", new View.OnClickListener() {
                 @Override
@@ -96,7 +96,8 @@ public class SplashActivity extends BaseActivity implements SplashMvpView {
             @Override
             public void run() {
                 startActivity(MainActivity.getStartIntent(SplashActivity.this));
+                finish();
             }
-        },500);
+        },300);
     }
 }

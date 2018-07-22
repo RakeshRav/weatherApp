@@ -1,20 +1,79 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
 
     <RelativeLayout
         android:id="@+id/rlTop"
         android:layout_width="match_parent"
-        android:layout_height="200dp"
+        android:layout_height="300dp"
         >
 
-        <ImageView
+        <android.support.v7.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@drawable/banner"/>
+            android:layout_marginBottom="12px"
+            app:cardCornerRadius="8px"
+            app:cardElevation="8px">
 
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/banner"/>
+
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:orientation="vertical"
+                >
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/tvCurrentTemp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="26"
+                        android:textColor="@color/white"
+                        android:textSize="90sp"
+                        android:lineSpacingExtra="2dp"
+                        android:fontFamily="@font/titillium_web_bold"
+                        />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="&#xb0;"
+                        android:textColor="@color/white"
+                        android:textSize="80sp"
+                        android:fontFamily="@font/titillium_web_light"
+                        />
+
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/tvCurrentLocation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Bengaluru"
+                    android:textColor="@color/white"
+                    android:layout_marginTop="-20dp"
+                    android:fontFamily="@font/titillium_web_light"
+                    android:letterSpacing=".05"
+                    android:textSize="22sp"
+                    />
+
+
+            </LinearLayout>
+
+        </android.support.v7.widget.CardView>
 
     </RelativeLayout>
 
@@ -28,7 +87,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
-            android:paddingTop="220dp">
+            android:paddingTop="300dp">
 
             <LinearLayout
                 android:id="@+id/llForecast"

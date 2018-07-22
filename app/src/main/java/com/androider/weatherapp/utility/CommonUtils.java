@@ -26,6 +26,7 @@ import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.provider.Settings;
 import android.support.annotation.LayoutRes;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.animation.LinearInterpolator;
@@ -36,9 +37,13 @@ import com.androider.weatherapp.R;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.sql.Timestamp;
+import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
+import java.util.TimeZone;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -165,7 +170,29 @@ public final class CommonUtils {
         return new String(buffer, "UTF-8");
     }
 
-    public static String getTimeStamp() {
-        return new SimpleDateFormat(AppConstants.TIMESTAMP_FORMAT, Locale.US).format(new Date());
+    public static String getFormatDate(String dateStr) {
+
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        Date date = null;
+        try {
+            date = sdf.parse(dateStr);
+        } catch (ParseException e) {
+            Log.d(TAG,"except "+e.getMessage());
+            e.printStackTrace();
+        }
+
+        long millis = date.getTime();
+
+        SimpleDateFormat sdf1 = new SimpleDateFormat("dd MMM yyyy");
+        return sdf1.format(new Date(millis));
+
+    }
+
+    public static boolean isNullOrEmpty(String str){
+        if (str != null && !str.isEmpty()){
+            return false;
+        }
+
+        return true;
     }
 }
